@@ -2,6 +2,7 @@ class Chart {
   constructor(lineId, barId, ws, title, propX, propY) {
     this.X;
     this.Y;
+    this.format = lineId;
     this.propX = propX;
     this.propY = propY;
     this.chart = echarts.init(document.getElementById(lineId));
@@ -15,7 +16,6 @@ class Chart {
     //创建websocket连接
     var socket = new WebSocket(this.ws);
     socket.addEventListener('open', function(event) {
-      console.log('socket is open')
       socket.send('连接到客户端')
     });
     //监听事件
@@ -44,10 +44,9 @@ class Chart {
       } else {
         luxClass(data[this.propY],this.barData)
       }
-      console.log(this.barData)
       this.bar.setOption({
         series: {
-          name: 'lux',
+          name: title,
           data: Object.values(this.barData)
         },
       })
@@ -122,11 +121,13 @@ class Chart {
           },
           yAxis: {
             boundaryGap: [0, '100%'],
-            type: 'value'
+            type: 'value',
+            axisLabel:{
+              formatter:`{value} (${this.format})`
+            }
           },
           tooltip: {
             show: true,
-            //坐标轴触发，主要用于柱状图，折线图等
             trigger: 'axis'
           },
           dataZoom: [{
@@ -172,12 +173,15 @@ class Chart {
           },
           yAxis: {},
           series: {
-            name: 'lux',
+            name: this.title,
             type: 'bar',
             data: Object.values(this.barData)
           },
+          grid: {
+            bottom: '30%',
+            left: '20%'
+          }
         });
-        console.log(this.X, this.Y)
         this.upDate();
       }
     })
@@ -292,124 +296,70 @@ function luxClass(temp,barData){
     }
   }
 }
-//
-// $('.search').on('click', function() {
-//   var date = $('#date').val();
-//   $.ajax({
-//     type: 'get',
-//     data: 'date=' + date,
-//     url: '/getHistoryValue',
-//     success(msg) {
-//       var lower = 0;
-//       var normal = 0;
-//       var large = 0;
-//       var luxX = msg.luxTime.map(item => {
-//         var time = new Date(item.time);
-//         return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
-//       });
-//       var luxY = msg.luminance.map(item => {
-//         var luminance = item.luminance;
-//         if (luminance < 120) {
-//           lower++;
-//         } else if (luminance >= 120 && luminance < 130) {
-//           normal++;
-//         } else {
-//           large++;
-//         }
-//         return luminance;
-//       });
-//
-//       lux.chart.setOption({
-//         xAxis: {
-//           data: luxX,
-//           axisLabel: { //坐标轴刻度标签的相关设置。
-//             interval: 100,
-//             rotate: "45",
-//           },
-//         },
-//         series: [{
-//           name: '亮度',
-//           data: luxY
-//         }]
-//       })
-//
-//       lux.bar.setOption({
-//         series: {
-//           type: 'bar',
-//           data: [{
-//               name: '0~120lux',
-//               value: lower
-//             },
-//             {
-//               name: '120~130lux',
-//               value: normal
-//             },
-//             {
-//               name: '130lux+',
-//               value: large
-//             }
-//           ]
-//         },
-//         tooltip: {
-//           trigger: 'item'
-//
-//         }
-//       });
-//
-//       lower = 0;
-//       normal = 0;
-//       large = 0;
-//       var LpX = msg.LpTime.map(item => {
-//         var time = new Date(item.time);
-//         return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
-//       });
-//       var LpY = msg.LpDB.map(item => {
-//         var Lp = item.Lp;
-//         if (Lp < 45) {
-//           lower++;
-//         } else if (Lp >= 45 && Lp < 50) {
-//           normal++;
-//         } else {
-//           large++;
-//         }
-//         return Lp;
-//       });
-//       console.log(lower, normal, large)
-//       lp.chart.setOption({
-//         xAxis: {
-//           data: LpX,
-//           axisLabel: { //坐标轴刻度标签的相关设置。
-//             interval: 100,
-//             rotate: "45",
-//           },
-//         },
-//         series: [{
-//           name: '声音',
-//           data: LpY
-//         }]
-//       })
-//
-//       lp.bar.setOption({
-//         series: {
-//           type: 'bar',
-//           data: [{
-//               name: '0~45分贝',
-//               value: lower
-//             },
-//             {
-//               name: '45~50分贝',
-//               value: normal
-//             },
-//             {
-//               name: '50分贝以上',
-//               value: large
-//             }
-//           ]
-//         },
-//         tooltip: {
-//           trigger: 'item'
-//         }
-//       });
-//     }
-//   })
-// })
+
+$('.search').on('click', function() {
+  var date = $('#date').val();
+  $.ajax({
+    type: 'get',
+    data: 'date=' + date,
+    url: '/getHistoryValue',
+    success(msg) {
+      var luxX = msg.luxTime.map(item => {
+        var time = new Date(item.time);
+        return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
+      });
+      let barData = lux.barData
+      for(let key of Object.keys(lux.barData)){
+        barData[key] = 0;
+      }
+      var luxY = msg.luminance.map(item => {
+        var luminance = item.luminance;
+        luxClass(luminance,lux.barData)
+        return luminance;
+      });
+      lux.chart.setOption({
+        xAxis: {
+          data: luxX,
+          axisLabel: { //坐标轴刻度标签的相关设置。
+            interval: 100,
+            rotate: "45",
+          },
+        },
+        series: [{
+          name: '亮度',
+          data: luxY
+        }]
+      })
+
+      lux.bar.setOption({
+        series: {
+          name: 'lux',
+          data: Object.values(lux.barData)
+        },
+      })
+      var LpX = msg.LpTime.map(item => {
+        var time = new Date(item.time);
+        return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
+      });
+      var LpY = msg.LpDB.map(item => {
+        var Lp = item.Lp;
+        lpClass(item,lp.barData)
+        return Lp;
+      });
+      lp.chart.setOption({
+        xAxis: {
+          data: LpX,
+          axisLabel: { //坐标轴刻度标签的相关设置。
+            interval: 100,
+            rotate: "45",
+          },
+        },
+        series: [{
+          name: '声音',
+          data: LpY
+        }]
+      })
+
+    }
+  })
+})

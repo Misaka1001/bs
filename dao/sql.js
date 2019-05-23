@@ -63,11 +63,11 @@ function setValue(sql) {
 }
 module.exports = {
   getLp(req, res) {
-    const sql = 'SELECT * FROM lp order by id desc limit 0,100;';
+    const sql = 'SELECT * FROM lp order by id desc limit 0,1000;';
     getValue(sql, req, res)
   },
   getLux(req, res) {
-    const sql = 'SELECT * FROM lux order by id desc limit 0,100;';
+    const sql = 'SELECT * FROM lux order by id desc limit 0,1000;';
     getValue(sql, req, res)
   },
   socketLp(data) {
@@ -93,7 +93,6 @@ module.exports = {
     const date = req.query.date;
     const startDate = new Date(date.split('-').join('/') + ' 00:00:00').getTime();
     const EndDate = startDate + 86400000;
-    console.log(startDate, EndDate);
     const sql = {
       luxTime: `SELECT time FROM lux WHERE time BETWEEN ${startDate} and ${EndDate}`,
       luminance: `SELECT luminance FROM lux WHERE time BETWEEN ${startDate} and ${EndDate}`,
