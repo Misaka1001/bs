@@ -10,9 +10,9 @@ client.use(bodyparser.json())
 ws(client);
 
 let net = require('net')
-let server = net.createServer()
+let socket = net.createServer()
 
 module.exports = {
     client,
-    server
+    socket
 };

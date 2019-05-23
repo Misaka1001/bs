@@ -12,6 +12,7 @@ def do_connect():
 
     if wlan.isconnected():
         print('network config:',wlan.ifconfig())
+        return True
     else:
         time.sleep(3)
         do_connect()

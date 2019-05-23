@@ -4,14 +4,18 @@ let Events = require('events')
 let event = new Events()
 
 let client = connect.client
-let server = connect.server
+let socket = connect.socket
 
-server.on('connection', (serve) => {
+//与ESP8266建立socket连接
+socket.on('connection', (serve) => {
   serve.setEncoding('utf8')
   serve.on('data', (data) => {
     console.log(data);
-    event.emit('change', data);
-    sql.socketLp(data);
+    data = data.split('/')
+    for (let i = 0; i < data.length - 1; i++) {
+      event.emit('changeLux', data[i]);
+      sql.socketLux(data[i]);
+    }
   })
   serve.on('close', () => {
     console.log('close')
@@ -20,13 +24,24 @@ server.on('connection', (serve) => {
     console.log('error')
   })
 })
-server.listen(9000);
+socket.listen(9000);
 
+//初始化硬件时间
 client.get('/date', function(req, res) {
   let time = new Date()
-  let date = [time.getFullYear(),time.getMonth() + 1,time.getDate(),0,time.getHours(),time.getMinutes(),time.getSeconds(),time.getMilliseconds()]
-  res.send('success')
+  let date = [
+    time.getFullYear(),
+    time.getMonth() + 1,
+    time.getDate(),
+    0,
+    time.getHours(),
+    time.getMinutes(),
+    time.getSeconds(),
+    time.getMilliseconds()
+  ]
+  res.send(date)
 })
+
 //与客户端进行websocket连接
 client.ws('/socketTest', function(ws, req) {
   ws.on('message', function(data) {
@@ -78,4 +93,4 @@ client.get('/lux', function(req, res) {
   sql.getLux(req, res)
 })
 //监听端口
-client.listen('8082');
+client.listen('80');
