@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>噪声与光照监测系统</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <header>
+        <span>噪声与光照检测系统</span>
+    </header>
+
+    <section>
+        <aside class="date">
+            <form action="" id="search">
+                <label for="date">请选择要查询的时间</label>
+                <input type="date" id="date">
+                <input type="button" value="查询" class="search">
+            </form>
+        </aside>
+        <div class="voice">
+            <div class="title">
+                <span>噪声数据</span>
+            </div>
+            <div id="db" style="width: 600px;height:400px; display: inline-block"></div>
+            <div id="dbpie" style="width: 600px;height:400px; display: inline-block"></div>
+        </div>
+        <div class="light">
+            <div class="title">
+                <span>光强数据</span>
+            </div>
+            <div id="lux" style="width: 600px;height:400px; display: inline-block"></div>
+            <div id="luxpie" style="width: 600px;height:400px; display: inline-block"></div>
+        </div>
+    </section>
+    <script src="./jquery-1.11.3.js"></script>
+    <script src="./echarts.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
