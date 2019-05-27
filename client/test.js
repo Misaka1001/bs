@@ -24,8 +24,8 @@ class Chart {
             let newTime = new Date(newData.time);
             newTime = newTime.getHours() + '时' + newTime.getMinutes() + '分' + newTime.getSeconds() + 's'
             
-            time.push(newTime);
-            data.push(newData[this.id]);
+            this.time.push(newTime);
+            this.data.push(newData[this.id]);
             console.log(time)
             console.log(data)
 
