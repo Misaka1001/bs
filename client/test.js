@@ -68,7 +68,7 @@ class Chart {
                 } else {
                     this.data = msg.map(item => {
                         var data = item[this.id];
-                        luxClass(data, barData)
+                        lumAnalyze(data, barData)
                         return data;
                     });
                 }
@@ -216,7 +216,7 @@ function lpAnalyze(data, barData) {
         }
     }
 }
-function luxAnalyze(data, barData) {
+function lumAnalyze(data, barData) {
     data = parseFloat(data)
     if (data < 100) {
         if (data < 10) {
