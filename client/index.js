@@ -316,6 +316,7 @@ $('.search').on('click', function () {
 
             for (let key of Object.keys(lum.barData)) {
                 lum.barData[key] = 0;
+                console.log(lum.barData,key)
             }
             console.log(lum.barData)
             lum.data = msg.lum.map(item => {
@@ -351,6 +352,7 @@ $('.search').on('click', function () {
 
             for (let key of Object.keys(lp.barData)) {
                 lp.barData[key] = 0;
+                console.log(lp.barData,key)
             }
             console.log(lp.barData)
 
