@@ -19,8 +19,8 @@ class Chart {
         //监听事件
         socket.addEventListener('message', (event) => {
             let data = JSON.parse(event.data);
-            let X = this.X;
-            let Y = this.Y;
+            let X = this.time;
+            let Y = this.data;
             let title = this.title;
             let time = new Date(data.time);
             time = time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + 's'
@@ -57,9 +57,8 @@ class Chart {
             type: 'get',
             success: (msg) => {
                 console.log(msg)
-                msg = msg.reverse();
                 //获取柱状图Y轴数据
-                if (this.id === 'lp') {
+                if (this.id === 'Lp') {
                     this.data = msg.map(item => {
                         var data = item[this.id];
                         lpAnalyze(data, this.barData)
@@ -80,7 +79,7 @@ class Chart {
                     xAxis: {
                         type: "category",
                         boundaryGap: false,
-                        data: this.X,
+                        data: this.time,
                         axisLabel: { //坐标轴刻度标签的相关设置。
                             interval: 5,
                             rotate: "45",
@@ -119,7 +118,7 @@ class Chart {
                                 color: 'red'
                             }
                         },
-                        data: this.Y
+                        data: this.data
                     }],
                     grid: {
                         bottom: '30%',
