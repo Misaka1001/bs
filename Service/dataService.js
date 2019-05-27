@@ -19,7 +19,7 @@ module.exports = {
     const date = req.query.date
     const startDate = new Date(date.split('-').join('/') + ' 00:00:00').getTime()
     const endDate = startDate + 86400000
-    sql.getHistory(startDate, endDate, res)
+    sql.getHistoryValue(startDate, endDate, res)
   },
   saveData(data) {
     const result = JSON.parse(data)

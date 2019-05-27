@@ -103,7 +103,7 @@ module.exports = {
     queryValue('save', sql1)
     queryValue('save', sql2)
   },
-  getHistoryValue(date, startDate, endDate, res) {
+  getHistoryValue(startDate, endDate, res) {
     const sql = {
       luxTime: `SELECT time FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
       luminance: `SELECT luminance FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
