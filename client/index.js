@@ -26,8 +26,6 @@ class Chart {
 
             this.time.push(newTime);
             this.data.push(newData[this.id]);
-            console.log(this.time)
-            console.log(this.data)
 
             this.chart.setOption({
                 xAxis: {
@@ -58,7 +56,6 @@ class Chart {
             type: 'get',
             success: (msg) => {
                 msg = msg.reverse()
-                console.log(msg)
                 //获取柱状图Y轴数据
                 if (this.id === 'Lp') {
                     this.data = msg.map(item => {
@@ -308,7 +305,6 @@ $('.search').on('click', function () {
         data: 'date=' + date,
         url: '/getHistoryValue',
         success(msg) {
-            console.log(msg)
             lum.time = msg.lumTime.map(item => {
                 var time = new Date(item.time);
                 return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
@@ -316,9 +312,7 @@ $('.search').on('click', function () {
 
             for (let key of Object.keys(lum.barData)) {
                 lum.barData[key] = 0;
-                console.log(lum.barData,key)
             }
-            console.log(lum.barData)
             lum.data = msg.lum.map(item => {
                 let luminance = item.lum;
                 lumAnalyze(luminance, lum.barData)
@@ -352,9 +346,7 @@ $('.search').on('click', function () {
 
             for (let key of Object.keys(lp.barData)) {
                 lp.barData[key] = 0;
-                console.log(lp.barData,key)
             }
-            console.log(lp.barData)
 
             lp.data = msg.Lp.map(item => {
                 var Lp = item.Lp;
