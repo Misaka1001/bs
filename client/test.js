@@ -1,5 +1,6 @@
 class Chart {
     constructor(id, format, ws, title, barData) {
+        this.id = id;
         this.time;
         this.data;
         this.format = format;
