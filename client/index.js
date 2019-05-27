@@ -23,7 +23,7 @@ class Chart {
             let title = this.title;
             let newTime = new Date(newData.time);
             newTime = newTime.getHours() + '时' + newTime.getMinutes() + '分' + newTime.getSeconds() + 's'
-            
+
             this.time.push(newTime);
             this.data.push(newData[this.id]);
             console.log(this.time)
@@ -175,7 +175,7 @@ const lumBar = {
     '3~5': 0,
     '5~10': 0,
     '10~15': 0,
-    '15~30':0,
+    '15~30': 0,
     '20~30': 0,
     '30~50': 0,
     '50~75': 0,
@@ -311,13 +311,12 @@ $('.search').on('click', function () {
                 var time = new Date(item.time);
                 return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
             });
-            let barData = lum.barData
-            for (let key of Object.keys(barData)) {
-                barData[key] = 0;
+            for (let key of Object.keys(lum.barData)) {
+                lum.barData[key] = 0;
             }
             lum.data = msg.lum.map(item => {
                 let luminance = item.lum;
-                lumAnalyze(luminance, barData)
+                lumAnalyze(luminance, lum.barData)
                 return luminance;
             });
             lum.chart.setOption({
@@ -346,15 +345,15 @@ $('.search').on('click', function () {
                 return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
             });
 
-            barData = lp.barData
-            for (let key of Object.keys(barData)) {
-                barData[key] = 0;
+            for (let key of Object.keys(lp.barData)) {
+                lp.barData[key] = 0;
             }
             lp.data = msg.Lp.map(item => {
                 var Lp = item.Lp;
-                lpAnalyze(item, barData)
+                lpAnalyze(item, lp.barData)
                 return Lp;
             });
+
             lp.chart.setOption({
                 xAxis: {
                     data: lp.time,
@@ -368,7 +367,12 @@ $('.search').on('click', function () {
                     data: lp.data
                 }]
             })
-
+            lp.bar.setOption({
+                series: {
+                    name: 'lp',
+                    data: Object.values(lp.barData)
+                },
+            })
         }
     })
 })
