@@ -13,13 +13,13 @@ function getVal(sql, res) {
   pool.getConnection((err, connection) => {
     var results = {};
     var lumTime = new Promise(function (resolve, reject) {
-      connection.query(sql.luxTime, (err, result) => {
+      connection.query(sql.lumTime, (err, result) => {
         results.lumTime = result;
         resolve()
       })
     })
     var lum = new Promise(function (resolve, reject) {
-      connection.query(sql.luminance, (err, result) => {
+      connection.query(sql.lum, (err, result) => {
         results.lum = result;
         resolve()
       })
@@ -31,7 +31,7 @@ function getVal(sql, res) {
       })
     })
     var Lp = new Promise(function (resolve, reject) {
-      connection.query(sql.LpDB, (err, result) => {
+      connection.query(sql.Lp, (err, result) => {
         results.Lp = result;
         resolve()
       })
@@ -97,9 +97,9 @@ module.exports = {
   getHistoryValue(startDate, endDate, res) {
     const sql = {
       luxTime: `SELECT time FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
-      luminance: `SELECT luminance FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
+      lum: `SELECT luminance FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
       LpTime: `SELECT time FROM Lp WHERE time BETWEEN ${startDate} and ${endDate}`,
-      LpDB: `SELECT Lp FROM Lp WHERE time BETWEEN ${startDate} and ${endDate}`
+      Lp: `SELECT Lp FROM Lp WHERE time BETWEEN ${startDate} and ${endDate}`
     }
     getVal(sql, res);
   }
