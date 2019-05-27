@@ -23,7 +23,7 @@ module.exports = {
   },
   saveData(data) {
     const result = JSON.parse(data)
-    sql.saveData(result.luminance, result.Lp, result.time)
+    sql.saveData(result.lum, result.Lp, result.time)
   },
   saveLum(data) {
     const result = JSON.parse(data)
