@@ -297,7 +297,7 @@ function luxClass(temp,barData){
     }
   }
 }
-
+//test git
 $('.search').on('click', function() {
   var date = $('#date').val();
   $.ajax({
