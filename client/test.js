@@ -305,11 +305,12 @@ $('.search').on('click', function () {
         data: 'date=' + date,
         url: '/getHistoryValue',
         success(msg) {
+            console.log(msg)
             var luxX = msg.luxTime.map(item => {
                 var time = new Date(item.time);
                 return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
             });
-            let barData = lux.barData
+            let barData = lum.barData
             for (let key of Object.keys(lux.barData)) {
                 barData[key] = 0;
             }
