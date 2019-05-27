@@ -314,7 +314,7 @@ $('.search').on('click', function () {
             for (let key of Object.keys(barData)) {
                 barData[key] = 0;
             }
-            lum.data = msg.luminance.map(item => {
+            lum.data = msg.lum.map(item => {
                 let luminance = item.lum;
                 lumAnalyze(luminance, barData)
                 return luminance;
@@ -349,7 +349,7 @@ $('.search').on('click', function () {
             for (let key of Object.keys(barData)) {
                 barData[key] = 0;
             }
-            lp.data = msg.LpDB.map(item => {
+            lp.data = msg.Lp.map(item => {
                 var Lp = item.Lp;
                 lpAnalyze(item, barData)
                 return Lp;
