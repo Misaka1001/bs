@@ -39,9 +39,9 @@ class Chart {
                 }]
             });
             if (this.id === 'Lp') {
-                lpAnalyze(data[this.id], this.barData)
+                lpAnalyze(newData[this.id], this.barData)
             } else {
-                lumAnalyze(data[this.id], this.barData)
+                lumAnalyze(newData[this.id], this.barData)
             }
             this.bar.setOption({
                 series: {
