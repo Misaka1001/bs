@@ -358,7 +358,7 @@ $('.search').on('click', function () {
 
             lp.data = msg.Lp.map(item => {
                 var Lp = item.Lp;
-                lpAnalyze(item, lp.barData)
+                lpAnalyze(Lp, lp.barData)
                 return Lp;
             });
 
