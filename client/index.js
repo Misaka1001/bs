@@ -313,9 +313,11 @@ $('.search').on('click', function () {
                 var time = new Date(item.time);
                 return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
             });
+
             for (let key of Object.keys(lum.barData)) {
                 lum.barData[key] = 0;
             }
+            console.log(lum.barData)
             lum.data = msg.lum.map(item => {
                 let luminance = item.lum;
                 lumAnalyze(luminance, lum.barData)
@@ -350,6 +352,8 @@ $('.search').on('click', function () {
             for (let key of Object.keys(lp.barData)) {
                 lp.barData[key] = 0;
             }
+            console.log(lum.barData)
+
             lp.data = msg.Lp.map(item => {
                 var Lp = item.Lp;
                 lpAnalyze(item, lp.barData)
