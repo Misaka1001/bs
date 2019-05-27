@@ -19,21 +19,18 @@ class Chart {
         });
         //监听事件
         socket.addEventListener('message', (event) => {
-            let newData = JSON.parse(event.data);
-            let time = this.time;
-            let data = this.data;
+            let data = JSON.parse(event.data);
             let title = this.title;
-            let newTime = new Date(newData.time);
-            newTime = newTime.getHours() + '时' + newTime.getMinutes() + '分' + newTime.getSeconds() + 's'
-            time.push(time);
-            data.push(newData[this.id]);
+            let time = new Date(newData.time);
+            time = time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + 's'
+
             this.chart.setOption({
                 xAxis: {
                     data: time
                 },
                 series: [{
                     name: title,
-                    data: data
+                    data: newData[this.id]
                 }]
             });
             if (this.id === 'Lp') {
