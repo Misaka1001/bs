@@ -26,8 +26,8 @@ class Chart {
             
             this.time.push(newTime);
             this.data.push(newData[this.id]);
-            console.log(time)
-            console.log(data)
+            console.log(this.time)
+            console.log(this.data)
 
             this.chart.setOption({
                 xAxis: {
