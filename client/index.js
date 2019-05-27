@@ -352,7 +352,7 @@ $('.search').on('click', function () {
             for (let key of Object.keys(lp.barData)) {
                 lp.barData[key] = 0;
             }
-            console.log(lum.barData)
+            console.log(lp.barData)
 
             lp.data = msg.Lp.map(item => {
                 var Lp = item.Lp;
