@@ -58,6 +58,7 @@ class Chart {
       url: url,
       type: 'get',
       success: (msg) => {
+        console.log(msg)
         msg = msg.reverse();
         //获取柱状图Y轴数据
         if (this.propY === 'Lp') {

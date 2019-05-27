@@ -18,13 +18,17 @@ class MAX44009():
         self.i2c = I2C(scl=Pin(5), sda=Pin(4))
         self._addr = 0x4a
 
-        
+
     def _read_block(self, register, size=2):
         return self.i2c.readfrom_mem(self._addr, register, size)
 
 
     def luminosity(self):
-        data = self._read_block(self._REG_LUX_HIGH_BYTE, 2)
+        try:
+            data = self._read_block(self._REG_LUX_HIGH_BYTE, 2)
+        except Exception as e:
+            return False
+
         exponent = (data[0] & 0xF0) >> 4
         mantissa = ((data[0] & 0x0F) << 4) | (data[1] & 0x0F)
         luminance = ((2 ** exponent) * mantissa) * 0.045

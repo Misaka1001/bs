@@ -4,7 +4,7 @@
 import machine
 import urequests as req
 import json
-import lum
+import detection
 import wifi
 
 wifi.do_connect()
@@ -12,4 +12,4 @@ r = req.get('http://runasama.club/date')
 date = json.loads(r.text)
 machine.RTC().datetime(date)
 
-lum.getValue()
+detection.getValue()
