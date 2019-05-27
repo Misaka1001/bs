@@ -300,6 +300,8 @@ function lumAnalyze(data, barData) {
 }
 
 $('.search').on('click', function () {
+    lp.socket.close()
+    lum.socket.close()
     var date = $('#date').val();
     $.ajax({
         type: 'get',
