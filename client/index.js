@@ -298,6 +298,7 @@ function luxClass(temp,barData){
   }
 }
 //test git
+//test 2
 $('.search').on('click', function() {
   var date = $('#date').val();
   $.ajax({
