@@ -12,7 +12,8 @@ socket.on('connection', (serve) => {
         console.log(data);
         data = data.split('/')
         for (let i = 0; i < data.length - 1; i++) {
-            event.emit('changeLux', data[i]);
+            event.emit('transferLum', data[i]);
+            event.emit('transferLp', data[i]);
             dataService.saveData(data[i])
         }
     })
@@ -37,7 +38,7 @@ client.ws('/wsLp', function (ws, req) {
         console.log(data)
     })
     //定义事件，向客户端发送数据
-    function change(data) {
+    function transferLp(data) {
         //判断连接状态 防止报错
         if (ws.readyState === 3) {
             return
@@ -45,9 +46,9 @@ client.ws('/wsLp', function (ws, req) {
             ws.send(data)
         }
     }
-    event.on('change', change)
+    event.on('transferLp', transferLp)
     ws.on('close', function () {
-        event.off('change', change);
+        event.off('transferLp', transferLp);
         console.log('close')
     })
 })
@@ -56,7 +57,7 @@ client.ws('/wsLum', function (ws, req) {
         console.log(data);
     })
     //定义事件，向客户端发送数据
-    function changeLux(data) {
+    function transferLum(data) {
         //判断连接状态 防止报错
         if (ws.readyState === 3) {
             return
@@ -64,9 +65,9 @@ client.ws('/wsLum', function (ws, req) {
             ws.send(data);
         }
     }
-    event.on('changeLux', changeLux)
+    event.on('transferLum', transferLum)
     ws.on('close', function () {
-        event.off('changeLux', changeLux);
+        event.off('transferLum', transferLum);
         console.log('close')
     })
 })
