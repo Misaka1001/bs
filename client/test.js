@@ -6,36 +6,34 @@ class Chart {
         this.format = format;
         this.chart = echarts.init(document.getElementById(id + 'line'));
         this.bar = echarts.init(document.getElementById(id + 'bar'));
-        this.ws = ws;
         this.title = title;
         this.barData = barData;
+        this.socket = new WebSocket(ws);
     };
     //更新数据
     upDate() {
         //创建websocket连接
-        var socket = new WebSocket(this.ws);
+        const socket = this.socket;
         socket.addEventListener('open', function (event) {
             socket.send('连接到客户端')
         });
         //监听事件
         socket.addEventListener('message', (event) => {
-            let data = JSON.parse(event.data);
-            let X = this.time;
-            let Y = this.data;
+            let newData = JSON.parse(event.data);
+            let time = this.time;
+            let data = this.data;
             let title = this.title;
-            let time = new Date(data.time);
-            time = time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + 's'
-            X.push(time);
-            X.shift();
-            Y.push(data[this.id]);
-            Y.shift();
+            let newTime = new Date(newData.time);
+            newTime = newTime.getHours() + '时' + newTime.getMinutes() + '分' + newTime.getSeconds() + 's'
+            time.push(time);
+            data.push(newData[this.id]);
             this.chart.setOption({
                 xAxis: {
-                    data: X
+                    data: time
                 },
                 series: [{
                     name: title,
-                    data: Y
+                    data: data
                 }]
             });
             if (this.id === 'Lp') {
