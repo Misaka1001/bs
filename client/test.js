@@ -21,7 +21,7 @@ class Chart {
         socket.addEventListener('message', (event) => {
             let data = JSON.parse(event.data);
             let title = this.title;
-            let time = new Date(newData.time);
+            let time = new Date(data.time);
             time = time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + 's'
 
             this.chart.setOption({
@@ -30,7 +30,7 @@ class Chart {
                 },
                 series: [{
                     name: title,
-                    data: newData[this.id]
+                    data: data[this.id]
                 }]
             });
             if (this.id === 'Lp') {
