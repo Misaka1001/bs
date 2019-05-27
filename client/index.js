@@ -227,7 +227,7 @@ function lumAnalyze(data, barData) {
                     if (data < 0.5) {
                         barData['0~0.5'] += 1
                     } else {
-                        barData['0.5~0.1'] += 1
+                        barData['0.5~1'] += 1
                     }
                 } else {
                     barData['1~3'] += 1
