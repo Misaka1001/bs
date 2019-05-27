@@ -12,15 +12,15 @@ const pool = mysql.createPool({
 function getVal(sql, res) {
   pool.getConnection((err, connection) => {
     var results = {};
-    var luxTime = new Promise(function (resolve, reject) {
+    var lumTime = new Promise(function (resolve, reject) {
       connection.query(sql.luxTime, (err, result) => {
-        results.luxTime = result;
+        results.lumTime = result;
         resolve()
       })
     })
-    var luminance = new Promise(function (resolve, reject) {
+    var lum = new Promise(function (resolve, reject) {
       connection.query(sql.luminance, (err, result) => {
-        results.luminance = result;
+        results.lum = result;
         resolve()
       })
     })
@@ -30,13 +30,13 @@ function getVal(sql, res) {
         resolve()
       })
     })
-    var LpDB = new Promise(function (resolve, reject) {
+    var Lp = new Promise(function (resolve, reject) {
       connection.query(sql.LpDB, (err, result) => {
-        results.LpDB = result;
+        results.Lp = result;
         resolve()
       })
     })
-    Promise.all([luxTime, luminance, LpTime, LpDB]).then(function () {
+    Promise.all([lumTime, lum, LpTime, Lp]).then(function () {
       res.json(results)
       connection.release();
     })
@@ -51,15 +51,6 @@ function queryValue(flag, sql, res) {
       }
     })
     connection.release();
-  })
-}
-
-//websocket的数据库操作
-function setValue(sql) {
-  pool.getConnection((err, connection) => {
-    connection.query(sql, (err, result) => {
-      connection.release();
-    })
   })
 }
 

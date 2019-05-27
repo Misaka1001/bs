@@ -306,22 +306,22 @@ $('.search').on('click', function () {
         url: '/getHistoryValue',
         success(msg) {
             console.log(msg)
-            var luxX = msg.luxTime.map(item => {
+            lum.time = msg.lumTime.map(item => {
                 var time = new Date(item.time);
                 return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
             });
             let barData = lum.barData
-            for (let key of Object.keys(lux.barData)) {
+            for (let key of Object.keys(barData)) {
                 barData[key] = 0;
             }
-            var luxY = msg.luminance.map(item => {
-                var luminance = item.lum;
-                luxClass(luminance, lux.barData)
+            lum.data = msg.luminance.map(item => {
+                let luminance = item.lum;
+                lumAnalyze(luminance, barData)
                 return luminance;
             });
-            lux.chart.setOption({
+            lum.chart.setOption({
                 xAxis: {
-                    data: luxX,
+                    data: lum.time,
                     axisLabel: { //坐标轴刻度标签的相关设置。
                         interval: 100,
                         rotate: "45",
@@ -329,28 +329,34 @@ $('.search').on('click', function () {
                 },
                 series: [{
                     name: '亮度',
-                    data: luxY
+                    data: lum.data
                 }]
             })
-
-            lux.bar.setOption({
+            lum.bar.setOption({
                 series: {
-                    name: 'lux',
-                    data: Object.values(lux.barData)
+                    name: 'lum',
+                    data: Object.values(lum.barData)
                 },
             })
-            var LpX = msg.LpTime.map(item => {
-                var time = new Date(item.time);
+
+
+            lp.time = msg.LpTime.map(item => {
+                let time = new Date(item.time);
                 return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + '秒'
             });
-            var LpY = msg.LpDB.map(item => {
+
+            barData = lp.barData
+            for (let key of Object.keys(barData)) {
+                barData[key] = 0;
+            }
+            lp.data = msg.LpDB.map(item => {
                 var Lp = item.Lp;
-                lpClass(item, lp.barData)
+                lpAnalyze(item, barData)
                 return Lp;
             });
             lp.chart.setOption({
                 xAxis: {
-                    data: LpX,
+                    data: lp.time,
                     axisLabel: { //坐标轴刻度标签的相关设置。
                         interval: 100,
                         rotate: "45",
@@ -358,7 +364,7 @@ $('.search').on('click', function () {
                 },
                 series: [{
                     name: '声音',
-                    data: LpY
+                    data: lp.data
                 }]
             })
 
