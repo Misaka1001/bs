@@ -5,7 +5,7 @@ let event = new Events()
 
 let client = connect.client
 let socket = connect.socket
-//与ESP8266建立socket连接
+//与nodemcu建立socket连接
 socket.on('connection', (serve) => {
     serve.setEncoding('utf8')
     serve.on('data', (data) => {
@@ -13,8 +13,6 @@ socket.on('connection', (serve) => {
         data = data.split('/')
         for (let i = 0; i < data.length - 1; i++) {
             event.emit('changeLux', data[i]);
-            //   dataService.saveLum(data[i]);
-            //   dataService.saveLp(data[i])
             dataService.saveData(data[i])
         }
     })
@@ -34,7 +32,7 @@ client.get('/date', function (req, res) {
 })
 
 //与客户端进行websocket连接
-client.ws('/socketTest', function (ws, req) {
+client.ws('/wsLp', function (ws, req) {
     ws.on('message', function (data) {
         console.log(data)
     })
@@ -53,7 +51,7 @@ client.ws('/socketTest', function (ws, req) {
         console.log('close')
     })
 })
-client.ws('/socketLux', function (ws, req) {
+client.ws('/wsLum', function (ws, req) {
     ws.on('message', function (data) {
         console.log(data);
     })
@@ -74,13 +72,13 @@ client.ws('/socketLux', function (ws, req) {
 })
 
 client.get('/getHistoryValue', function (req, res) {
-    dataService.getHistory(req,res);
+    dataService.getHistory(req, res);
 })
 //客户端首次连接获取的数据
-client.get('/data', function (req, res) {
+client.get('/lp', function (req, res) {
     dataService.getLp(res);
 })
-client.get('/lux', function (req, res) {
+client.get('/lum', function (req, res) {
     dataService.getLum(res)
 })
 //监听端口
