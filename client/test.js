@@ -38,9 +38,9 @@ class Chart {
                 }]
             });
             if (this.id === 'Lp') {
-                lpClass(data[this.id], this.barData)
+                lpAnalyze(data[this.id], this.barData)
             } else {
-                luxClass(data[this.id], this.barData)
+                lumAnalyze(data[this.id], this.barData)
             }
             this.bar.setOption({
                 series: {
@@ -59,7 +59,7 @@ class Chart {
                 console.log(msg)
                 msg = msg.reverse();
                 //获取柱状图Y轴数据
-                if (this.id === 'Lp') {
+                if (this.id === 'lp') {
                     this.data = msg.map(item => {
                         var data = item[this.id];
                         lpAnalyze(data, this.barData)
@@ -68,7 +68,7 @@ class Chart {
                 } else {
                     this.data = msg.map(item => {
                         var data = item[this.id];
-                        lumAnalyze(data, barData)
+                        lumAnalyze(data, this.barData)
                         return data;
                     });
                 }
@@ -164,7 +164,7 @@ const lpBar = {
     '70~90': 0,
     '90~120': 0,
 }
-const lp = new Chart('lp', 'dB', 'ws://123.206.37.27:80/wsLp', '声音', lpBar);
+const lp = new Chart('Lp', 'dB', 'ws://123.206.37.27:80/wsLp', '声音', lpBar);
 lp.load('/lp');
 
 const lumBar = {
