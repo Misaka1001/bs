@@ -191,7 +191,7 @@ class Chart {
 var lp = new Chart('db', 'dbbar', 'ws://123.206.37.27:80/socketTest', '声音', 'time', 'Lp');
 lp.load('/data');
 
-var lux = new Chart('lux', 'luxbar', 'ws://123.206.37.27:80/socketLux', '亮度', 'time', 'luminance')
+var lux = new Chart('lux', 'luxbar', 'ws://123.206.37.27:80/socketLux', '亮度', 'time', 'lum')
 lux.load('/lux');
 
 function lpClass(temp,barData){
@@ -314,7 +314,7 @@ $('.search').on('click', function() {
         barData[key] = 0;
       }
       var luxY = msg.luminance.map(item => {
-        var luminance = item.luminance;
+        var luminance = item.lum;
         luxClass(luminance,lux.barData)
         return luminance;
       });

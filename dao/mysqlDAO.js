@@ -69,7 +69,7 @@ module.exports = {
     queryValue('get', sql, res)
   },
   getLum(res) {
-    const sql = 'SELECT * FROM lux order by id desc limit 0,1000;';
+    const sql = 'SELECT * FROM lum order by id desc limit 0,1000;';
     queryValue('get', sql, res)
   },
   saveLp(Lp, time) {
@@ -81,7 +81,7 @@ module.exports = {
     queryValue('save', sql);
   },
   saveLum(lum, result) {
-    const sql = `INSERT INTO Lux VALUES(
+    const sql = `INSERT INTO Lum VALUES(
             NULL,
             ${lum},
             ${result}
@@ -94,18 +94,19 @@ module.exports = {
       ${Lp},
       ${time}
     )`
-    const sql2 = `INSERT INTO Lux VALUES(
+    const sql2 = `INSERT INTO lum VALUES(
       NULL,
       ${lum},
-      ${result}
+      ${time}
     )`
-    queryValue(sql1)
-    queryValue(sql2)
+    console.log(lum,Lp,time)
+    queryValue('save', sql1)
+    queryValue('save', sql2)
   },
   getHistoryValue(date, startDate, endDate, res) {
     const sql = {
-      luxTime: `SELECT time FROM lux WHERE time BETWEEN ${startDate} and ${endDate}`,
-      luminance: `SELECT luminance FROM lux WHERE time BETWEEN ${startDate} and ${endDate}`,
+      luxTime: `SELECT time FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
+      luminance: `SELECT luminance FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
       LpTime: `SELECT time FROM Lp WHERE time BETWEEN ${startDate} and ${endDate}`,
       LpDB: `SELECT Lp FROM Lp WHERE time BETWEEN ${startDate} and ${endDate}`
     }

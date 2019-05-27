@@ -4,11 +4,11 @@ CREATE DATABASE detection CHARSET=UTF8;
 USE detection;
 CREATE TABLE Lp(
     id INT PRIMARY KEY AUTO_INCREMENT,
-    Lp INT(3),
+    Lp FLOAT(3),
     time BIGINT
 );
 CREATE TABLE Lum(
     id INT PRIMARY KEY AUTO_INCREMENT,
-    lum INT(3),
+    lum FLOAT(3),
     time BIGINT
 )
