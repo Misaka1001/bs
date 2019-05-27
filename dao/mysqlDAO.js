@@ -96,8 +96,8 @@ module.exports = {
   },
   getHistoryValue(startDate, endDate, res) {
     const sql = {
-      luxTime: `SELECT time FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
-      lum: `SELECT luminance FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
+      lumTime: `SELECT time FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
+      lum: `SELECT lum FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
       LpTime: `SELECT time FROM Lp WHERE time BETWEEN ${startDate} and ${endDate}`,
       Lp: `SELECT Lp FROM Lp WHERE time BETWEEN ${startDate} and ${endDate}`
     }
