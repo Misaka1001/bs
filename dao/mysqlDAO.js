@@ -49,8 +49,8 @@ function queryValue(flag, sql, res) {
       if (flag === 'get') {
         res.json(result);
       }
-      connection.release();
     })
+    connection.release();
   })
 }
 
