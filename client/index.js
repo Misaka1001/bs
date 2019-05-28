@@ -75,7 +75,7 @@ class Chart {
                     return time.getHours() + '时' + time.getMinutes() + '分' + time.getSeconds() + 's'
                 })
 
-                let option = {
+                let lineOption = {
                     tooltip: {
                         trigger: 'axis',
                         position: function (pt) {
@@ -144,80 +144,69 @@ class Chart {
                         }
                     ]
                 };
-                this.chart.setOption(option)
-                // this.chart.setOption({
-                //     xAxis: {
-                //         type: "category",
-                //         boundaryGap: false,
-                //         data: this.time,
-                //         axisLabel: { //坐标轴刻度标签的相关设置。
-                //             interval: 5,
-                //             rotate: "45",
-                //         },
-                //     },
-                //     yAxis: {
-                //         boundaryGap: [0, '100%'],
-                //         type: 'value',
-                //         axisLabel: {
-                //             formatter: `{value} (${this.format})`
-                //         }
-                //     },
+                this.chart.setOption(lineOption)
+
+                let barOption = {
+                    color: ['#E15457'],
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            data : Object.keys(this.barData),
+                            axisTick: {
+                                alignWithLabel: true
+                            }
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            name:this.title,
+                            type:'bar',
+                            barWidth: '60%',
+                            data:Object.values(this.barData)
+                        }
+                    ]
+                };
+                
+                this.bar.setOption(barOption)
+                // this.bar.setOption({
                 //     tooltip: {
-                //         show: true,
-                //         trigger: 'axis'
+                //         trigger: 'item'
                 //     },
-                //     dataZoom: [{
-                //         type: 'slider',
-                //         start: 0,
-                //         end: 100
-                //     },
-                //     {
-                //         type: 'inside',
-                //         start: 0,
-                //         end: 100
-                //     }
-                //     ],
-                //     series: [{
-                //         name: this.id,
-                //         type: 'line',
-                //         smooth: true, //数据光滑过度
-                //         symbol: 'none', //下一个数据点
-                //         stack: 'a',
-                //         areaStyle: {
-                //             normal: {
-                //                 color: 'red'
-                //             }
+                //     xAxis: {
+                //         data: Object.keys(this.barData),
+                //         axisLabel: {
+                //             interval: 0,
+                //             rotate: "60",
                 //         },
-                //         data: this.data
-                //     }],
+                //     },
+                //     yAxis: {},
+                //     series: {
+                //         name: this.title,
+                //         type: 'bar',
+                //         data: Object.values(this.barData)
+                //     },
                 //     grid: {
                 //         bottom: '30%',
                 //         left: '20%'
                 //     }
-                // })
-
-                this.bar.setOption({
-                    tooltip: {
-                        trigger: 'item'
-                    },
-                    xAxis: {
-                        data: Object.keys(this.barData),
-                        axisLabel: {
-                            interval: 0,
-                            rotate: "60",
-                        },
-                    },
-                    yAxis: {},
-                    series: {
-                        name: this.title,
-                        type: 'bar',
-                        data: Object.values(this.barData)
-                    },
-                    grid: {
-                        bottom: '30%',
-                        left: '20%'
-                    }
-                });
+                // });
                 this.upDate();
             }
         })
