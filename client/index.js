@@ -84,7 +84,7 @@ class Chart {
                     },
                     title: {
                         left: 'center',
-                        text: '测量数据',
+                        text: this.id === 'Lp' ? '噪声数据' : '光照数据',
                     },
                     toolbox: {
                         feature: {
@@ -185,28 +185,6 @@ class Chart {
                 };
                 
                 this.bar.setOption(barOption)
-                // this.bar.setOption({
-                //     tooltip: {
-                //         trigger: 'item'
-                //     },
-                //     xAxis: {
-                //         data: Object.keys(this.barData),
-                //         axisLabel: {
-                //             interval: 0,
-                //             rotate: "60",
-                //         },
-                //     },
-                //     yAxis: {},
-                //     series: {
-                //         name: this.title,
-                //         type: 'bar',
-                //         data: Object.values(this.barData)
-                //     },
-                //     grid: {
-                //         bottom: '30%',
-                //         left: '20%'
-                //     }
-                // });
                 this.upDate();
             }
         })
