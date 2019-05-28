@@ -355,6 +355,8 @@ $('.search').on('click', function () {
 
             lp.chart.setOption({
                 xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
                     data: lp.time,
                     axisLabel: { //坐标轴刻度标签的相关设置。
                         interval: 100,
