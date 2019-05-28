@@ -322,7 +322,6 @@ $('.search').on('click', function () {
                 xAxis: {
                     data: lum.time,
                     axisLabel: { //坐标轴刻度标签的相关设置。
-                        interval: 100,
                         rotate: "45",
                     },
                 },
