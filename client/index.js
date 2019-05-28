@@ -392,12 +392,9 @@ $('.search').on('click', function () {
             lum.chart.setOption({
                 xAxis: {
                     data: lum.time,
-                    axisLabel: { //坐标轴刻度标签的相关设置。
-                        rotate: "45",
-                    },
                 },
                 series: [{
-                    name: '亮度',
+                    name: lum.id,
                     data: lum.data
                 }]
             })
@@ -426,16 +423,10 @@ $('.search').on('click', function () {
 
             lp.chart.setOption({
                 xAxis: {
-                    type: 'category',
-                    boundaryGap: false,
                     data: lp.time,
-                    axisLabel: { //坐标轴刻度标签的相关设置。
-                        interval: 100,
-                        rotate: "45",
-                    },
                 },
                 series: [{
-                    name: '声音',
+                    name: lp.id,
                     data: lp.data
                 }]
             })
