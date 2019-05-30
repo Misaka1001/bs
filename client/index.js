@@ -80,7 +80,8 @@ class Chart {
                         trigger: 'axis',
                         position: function (pt) {
                             return [pt[0], '10%'];
-                        }
+                        },
+                        formatter: '{value}' + this.format
                     },
                     title: {
                         left: 'center',
@@ -101,9 +102,10 @@ class Chart {
                         data: this.time
                     },
                     yAxis: {
-                        min : this.id === 'Lp' ? 30 : 0,
+                        min: this.id === 'Lp' ? 30 : 0,
                         type: 'value',
-                        boundaryGap: [0, '100%']
+                        boundaryGap: [0, '100%'],
+                        formatter: '{value}' + this.format
                     },
                     dataZoom: [{
                         type: 'inside',
@@ -124,9 +126,9 @@ class Chart {
                     }],
                     series: [
                         {
-                            name:this.id,
-                            type:'line',
-                            smooth:true,
+                            name: this.id,
+                            type: 'line',
+                            smooth: true,
                             symbol: 'none',
                             sampling: 'average',
                             itemStyle: {
@@ -149,10 +151,10 @@ class Chart {
 
                 let barOption = {
                     color: ['#E15457'],
-                    tooltip : {
+                    tooltip: {
                         trigger: 'axis',
-                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                         }
                     },
                     grid: {
@@ -161,30 +163,30 @@ class Chart {
                         bottom: '3%',
                         containLabel: true
                     },
-                    xAxis : [
+                    xAxis: [
                         {
-                            type : 'category',
-                            data : Object.keys(this.barData),
+                            type: 'category',
+                            data: Object.keys(this.barData),
                             axisTick: {
                                 alignWithLabel: true
                             }
                         }
                     ],
-                    yAxis : [
+                    yAxis: [
                         {
-                            type : 'value'
+                            type: 'value'
                         }
                     ],
-                    series : [
+                    series: [
                         {
-                            name:this.title,
-                            type:'bar',
+                            name: this.title,
+                            type: 'bar',
                             barWidth: '60%',
-                            data:Object.values(this.barData)
+                            data: Object.values(this.barData)
                         }
                     ]
                 };
-                
+
                 this.bar.setOption(barOption)
                 this.upDate();
             }
