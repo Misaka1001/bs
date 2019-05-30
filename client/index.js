@@ -80,10 +80,6 @@ class Chart {
                         trigger: 'axis',
                         position: function (pt) {
                             return [pt[0], '10%'];
-                        },
-                        formatter: (params) => {
-                            return `${params[0].name}
-                            ${params[0].seriesName} : ${params[0].value} ${this.id === 'Lp' ? 'dB' : 'lux'}`
                         }
                     },
                     title: {
