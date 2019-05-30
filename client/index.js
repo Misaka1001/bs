@@ -105,7 +105,10 @@ class Chart {
                         min: this.id === 'Lp' ? 30 : 0,
                         type: 'value',
                         boundaryGap: [0, '100%'],
-                        formatter: '{value}' + this.format
+                        axisLabel: {
+                            formatter: '{value}' + this.format
+                        }
+
                     },
                     dataZoom: [{
                         type: 'inside',
