@@ -81,6 +81,9 @@ class Chart {
                         position: function (pt) {
                             return [pt[0], '10%'];
                         },
+                        formatter(params){
+                            console.log(params)
+                        }
                     },
                     title: {
                         left: 'center',
