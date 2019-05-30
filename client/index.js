@@ -101,6 +101,7 @@ class Chart {
                         data: this.time
                     },
                     yAxis: {
+                        min : 30,
                         type: 'value',
                         boundaryGap: [0, '100%']
                     },
