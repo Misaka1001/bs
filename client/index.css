@@ -58,8 +58,23 @@ header{
     text-align: center;
     line-height: 40px;
 }
+#Lpline,#Lpbar,#lumline,#lumbar{
+    width: 49vw;
+    height: 35vw;
+    display: inline-block;
+}
 .db,.lux{
     width: 100;
     height: 600px;
     display: inline-block;
+}
+@media screen and (max-width:600px){
+    header{
+        width: 100vw;
+    }
+    #Lpline,#Lpbar,#lumline,#lumbar{
+        width: 99vw;
+        height: 70vh;
+        display: inline-block;
+    }
 }
