@@ -71,6 +71,11 @@ header{
 @media screen and (max-width:600px){
     header{
         min-width: 100vw;
+        height: 8rem;
+        display: block;
+    }
+    header span{
+        display: block;
     }
     .voice,.light{
         min-width: 100vw;
