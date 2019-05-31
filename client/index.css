@@ -46,21 +46,20 @@ header{
 .search:active{
     background:#286090;
 }
-@media screen and (max-width : 600px){
-    header{
-        min-width: 1200px;
-    }
-    .voice,.light{
-        min-width: 1200px;
-    }
-    .title{
-        height: 40px;
-        text-align: center;
-        line-height: 40px;
-    }
-    .db,.lux{
-        width: 100;
-        height: 600px;
-        display: inline-block;
-    }
+
+header{
+    min-width: 1200px;
+}
+.voice,.light{
+    min-width: 1200px;
+}
+.title{
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+.db,.lux{
+    width: 100;
+    height: 600px;
+    display: inline-block;
 }
