@@ -70,7 +70,10 @@ header{
 }
 @media screen and (max-width:600px){
     header{
-        width: 100vw;
+        min-width: 100vw;
+    }
+    .voice,.light{
+        min-width: 100vw;
     }
     #Lpline,#Lpbar,#lumline,#lumbar{
         width: 99vw;
