@@ -50,11 +50,7 @@ header{
     header{
         min-width: 1200px;
     }
-    section{
-        display: flex;
-    }
     .voice,.light{
-        flex: 1;
         min-width: 1200px;
     }
     .title{
