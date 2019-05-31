@@ -73,6 +73,7 @@ header{
         min-width: 100vw;
         height: 8rem;
         display: block;
+        text-indent: 0rem;
     }
     header span{
         display: block;
@@ -86,7 +87,7 @@ header{
     }
     #Lpline,#Lpbar,#lumline,#lumbar{
         width: 99vw;
-        height: 70vh;
+        height: 60vh;
         display: inline-block;
     }
 }
