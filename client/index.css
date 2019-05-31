@@ -3,30 +3,28 @@
     margin: 0;  
     font-family: Arial, Helvetica, sans-serif;
 }
+:root{
+    font-size: 1vw;
+}
 header{
-    height: 60px;
+    height: 4rem;
     background: rgba(0, 0, 0, 0.8);
     color: #fff;
-    line-height: 60px;
+    line-height: 4rem;
     text-indent: 2em;
-}
-aside{
-    min-width: 300px;
-    background: rgba(0, 0, 0, 0.9);
     display: flex;
-    justify-content: center;
-    padding: 30px;
-    box-sizing: border-box;
-    color: #fff;
 }
-#search{
-    margin-top: 30px;
-    width: 200px;
+.date{
+    display: flex;
+    margin-left: 3rem;
 }
+
 #date{
-    height: 30px;
+    height: 2rem;
+    line-height: 2rem;
     border: 1px solid #ccc;
-    padding: 0px 10px;
+    padding: 0rem 1rem;
+    margin-left: 1.5rem;
 }
 #date::-webkit-inner-spin-button { 
     display: none;
@@ -35,12 +33,13 @@ aside{
      display:none; 
 }
 .search{
+    margin: 0px 1rem;
     outline: none;
     background: #337ab7;
     border: 1px solid #2e6da4;
-    width: 50px;
-    height: 30px;
-    line-height: 30px;
+    width: 4rem;
+    height: 2rem;
+    line-height: 2rem;
     border-radius: 3px;
     color: #fff;
 }
