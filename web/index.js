@@ -14,9 +14,8 @@ socket.on('connection', (serve) => {
         if(data.length > 10){
             clearTimeout(time)
             time = setTimeout(function(){
-                console.log(1)
                 serve.destroy()
-            }, 2000)
+            }, 5000)
         }
         console.log(data);
         data = data.split('/')
