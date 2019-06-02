@@ -8,6 +8,7 @@ let socket = connect.socket
 //与nodemcu建立socket连接
 socket.on('connection', (serve) => {
     serve.setEncoding('utf8')
+    console.log('connection')
     serve.on('data', (data) => {
         console.log(data);
         data = data.split('/')
