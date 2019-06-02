@@ -11,7 +11,7 @@ socket.on('connection', (serve) => {
     serve.setEncoding('utf8')
     console.log('connection')
     time = setTimeout(function(){
-        serve.close()
+        serve.end()
     }, 2000)
     serve.on('data', (data) => {
         clearTimeout(time)
@@ -24,7 +24,7 @@ socket.on('connection', (serve) => {
             dataService.saveData(data[i])
         }
         time = setTimeout(function(){
-            serve.close()
+            serve.end()
         }, 2000)
     })
     serve.on('close', () => {
