@@ -6,10 +6,15 @@ let event = new Events()
 let client = connect.client
 let socket = connect.socket
 //与nodemcu建立socket连接
+let time = null
 socket.on('connection', (serve) => {
     serve.setEncoding('utf8')
     console.log('connection')
+    time = setTimeout(function(){
+        socket.close()
+    }, 2000)
     serve.on('data', (data) => {
+        clearTimeout(time)
         console.log(data);
         data = data.split('/')
         for (let i = 0; i < data.length - 1; i++) {
@@ -18,6 +23,9 @@ socket.on('connection', (serve) => {
             event.emit('transferLp', data[i]);
             dataService.saveData(data[i])
         }
+        time = setTimeout(function(){
+            socket.close()
+        }, 2000)
     })
     serve.on('close', () => {
         console.log('close')
