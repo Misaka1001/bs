@@ -15,7 +15,7 @@ socket.on('connection', (serve) => {
             clearTimeout(time)
             time = setTimeout(function(){
                 console.log(1)
-                serve.end()
+                serve.destroy()
             }, 2000)
         }
         console.log(data);
@@ -26,6 +26,9 @@ socket.on('connection', (serve) => {
             event.emit('transferLp', data[i]);
             dataService.saveData(data[i])
         }
+    })
+    serve.on('end', () => {
+        console.log('end')
     })
     serve.on('close', () => {
         console.log('close')
