@@ -15,6 +15,9 @@ socket.on('connection', (serve) => {
     }, 2000)
     serve.on('data', (data) => {
         clearTimeout(time)
+        time = setTimeout(function(){
+            serve.end()
+        }, 2000)
         console.log(data);
         data = data.split('/')
         for (let i = 0; i < data.length - 1; i++) {
@@ -23,9 +26,6 @@ socket.on('connection', (serve) => {
             event.emit('transferLp', data[i]);
             dataService.saveData(data[i])
         }
-        time = setTimeout(function(){
-            serve.end()
-        }, 2000)
     })
     serve.on('close', () => {
         console.log('close')
