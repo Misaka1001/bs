@@ -10,6 +10,9 @@ let time = null
 socket.on('connection', (serve) => {
     serve.setEncoding('utf8')
     console.log('connection')
+    socket.on('close',function(){
+        console.log('close')
+    })
     time = setTimeout(function(){
         socket.close()
     }, 2000)
