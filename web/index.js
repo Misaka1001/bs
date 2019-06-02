@@ -12,11 +12,13 @@ socket.on('connection', (serve) => {
     console.log('connection')
     time = setTimeout(function(){
         serve.end()
+        console.log(1)
     }, 2000)
     serve.on('data', (data) => {
         if(data.length > 10){
             clearTimeout(time)
             time = setTimeout(function(){
+                console.log(1)
                 serve.end()
             }, 2000)
         }
