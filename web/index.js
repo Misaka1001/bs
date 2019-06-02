@@ -6,10 +6,10 @@ let event = new Events()
 let client = connect.client
 let socket = connect.socket
 //与nodemcu建立socket连接
-let time = null
 socket.on('connection', (serve) => {
     serve.setEncoding('utf8')
     console.log('connection')
+    let time = null
     serve.on('data', (data) => {
         if(data.length > 10){
             clearTimeout(time)
