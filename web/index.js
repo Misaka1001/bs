@@ -14,10 +14,12 @@ socket.on('connection', (serve) => {
         serve.end()
     }, 2000)
     serve.on('data', (data) => {
-        clearTimeout(time)
-        time = setTimeout(function(){
-            serve.end()
-        }, 2000)
+        if(data.length > 10){
+            clearTimeout(time)
+            time = setTimeout(function(){
+                serve.end()
+            }, 2000)
+        }
         console.log(data);
         data = data.split('/')
         for (let i = 0; i < data.length - 1; i++) {
