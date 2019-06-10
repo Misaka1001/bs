@@ -90,7 +90,6 @@ module.exports = {
       ${lum},
       ${time}
     )`
-    console.log(lum,Lp,time)
     queryValue('save', sql1)
     queryValue('save', sql2)
   },
