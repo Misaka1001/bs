@@ -26,7 +26,13 @@ module.exports = {
     sql.saveData(result.lum, result.Lp, result.time)
   },
   saveLum(data) {
-    const result = JSON.parse(data)
+    let result
+    try{
+      result = JSON.parse(data)
+    }catch(e){
+      console.log(data)
+      console.log(e.message)
+    }
     sql.saveLum(result.lum, result.time)
   },
   saveLp(data) {
