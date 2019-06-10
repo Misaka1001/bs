@@ -17,10 +17,9 @@ socket.on('connection', (serve) => {
                 serve.destroy()
             }, 5000)
         }
-        console.log(data);
         data = data.split('/')
         for (let i = 0; i < data.length - 1; i++) {
-            console.log(data[i])
+            console.log('received:' + data[i])
             event.emit('transferLum', data[i]);
             event.emit('transferLp', data[i]);
             dataService.saveData(data[i])
