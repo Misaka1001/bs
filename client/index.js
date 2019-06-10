@@ -198,63 +198,58 @@ class Chart {
 
 
 const lpBar = {
-    '20~30': 0,
-    '30~40': 0,
-    '40~50': 0,
-    '50~70': 0,
-    '70~90': 0,
-    '90~120': 0,
+    '30~40dB': 0,
+    '40~50dB': 0,
+    '50~70dB': 0,
+    '70~90dB': 0,
+    '90~120dB': 0,
 }
 const lp = new Chart('Lp', 'dB', 'ws://123.206.37.27:80/wsLp', '声音', lpBar);
 lp.load('/lp');
 
 const lumBar = {
-    '0~0.5': 0,
-    '0.5~1': 0,
-    '1~3': 0,
-    '3~5': 0,
-    '5~10': 0,
-    '10~15': 0,
-    '15~30': 0,
-    '20~30': 0,
-    '30~50': 0,
-    '50~75': 0,
-    '75~100': 0,
-    '100~150': 0,
-    '150~200': 0,
-    '200~300': 0,
-    '300~500': 0,
-    '500~750': 0,
-    '750~1000': 0,
-    '1000~1500': 0,
-    '1500~2000': 0,
-    '2000~3000': 0,
-    '3000~5000': 0
+    '0~0.5lx': 0,
+    '0.5~1lx': 0,
+    '1~3lx': 0,
+    '3~5lx': 0,
+    '5~10lx': 0,
+    '10~15lx': 0,
+    '15~30lx': 0,
+    '20~30lx': 0,
+    '30~50lx': 0,
+    '50~75lx': 0,
+    '75~100lx': 0,
+    '100~150lx': 0,
+    '150~200lx': 0,
+    '200~300lx': 0,
+    '300~500lx': 0,
+    '500~750lx': 0,
+    '750~1000lx': 0,
+    '1000~1500lx': 0,
+    '1500~2000lx': 0,
+    '2000~3000lx': 0,
+    '3000~5000lx': 0
 }
-const lum = new Chart('lum', 'lux', 'ws://123.206.37.27:80/wsLum', '亮度', lumBar)
+const lum = new Chart('lum', 'lx', 'ws://123.206.37.27:80/wsLum', '亮度', lumBar)
 lum.load('/lum');
 
 function lpAnalyze(data, barData) {
     data = parseFloat(data)
     if (data < 50) {
         if (data < 40) {
-            if (data < 30) {
-                barData['20~30'] += 1
-            } else {
-                barData['30~40'] += 1
-            }
+            barData['30~40dB'] += 1
         } else {
-            barData['40~50'] += 1
+            barData['40~50dB'] += 1
         }
     } else {
         if (data < 90) {
             if (data < 70) {
-                barData['50~70'] += 1
+                barData['50~70dB'] += 1
             } else {
-                barData['70~90'] += 1
+                barData['70~90dB'] += 1
             }
         } else {
-            barData['90~120'] += 1
+            barData['90~120dB'] += 1
         }
     }
 }
@@ -265,36 +260,36 @@ function lumAnalyze(data, barData) {
             if (data < 3) {
                 if (data < 1) {
                     if (data < 0.5) {
-                        barData['0~0.5'] += 1
+                        barData['0~0.5lx'] += 1
                     } else {
-                        barData['0.5~1'] += 1
+                        barData['0.5~1lx'] += 1
                     }
                 } else {
-                    barData['1~3'] += 1
+                    barData['1~3lx'] += 1
                 }
             } else {
                 if (data < 5) {
-                    barData['3~5'] += 1
+                    barData['3~5lx'] += 1
                 } else {
-                    barData['5~10'] += 1
+                    barData['5~10lx'] += 1
                 }
             }
         } else {
             if (data < 50) {
                 if (data < 30) {
                     if (data < 15) {
-                        barData['10~15'] += 1
+                        barData['10~15lx'] += 1
                     } else {
-                        barData['15~30'] += 1
+                        barData['15~30lx'] += 1
                     }
                 } else {
-                    barData['30~50'] += 1
+                    barData['30~50lx'] += 1
                 }
             } else {
                 if (data < 75) {
-                    barData['50~75'] += 1
+                    barData['50~75lx'] += 1
                 } else {
-                    barData['75~100'] += 1
+                    barData['75~100lx'] += 1
                 }
             }
         }
@@ -302,36 +297,36 @@ function lumAnalyze(data, barData) {
         if (data < 750) {
             if (data < 200) {
                 if (data < 150) {
-                    barData['100~150'] += 1
+                    barData['100~150lx'] += 1
                 } else {
-                    barData['150~200'] += 1
+                    barData['150~200lx'] += 1
                 }
             } else {
                 if (data < 500) {
                     if (data < 300) {
-                        barData['200~300'] += 1
+                        barData['200~300lx'] += 1
                     } else {
-                        barData['300~500'] += 1
+                        barData['300~500lx'] += 1
                     }
                 } else {
-                    barData['500~750'] += 1
+                    barData['500~750lx'] += 1
                 }
             }
         } else {
             if (data < 1500) {
                 if (data < 1000) {
-                    barData['750~1000'] += 1
+                    barData['750~1000lx'] += 1
                 } else {
-                    barData['1000~1500'] += 1
+                    barData['1000~1500lx'] += 1
                 }
             } else {
                 if (data < 2000) {
-                    barData['1500~2000'] += 1
+                    barData['1500~2000lx'] += 1
                 } else {
                     if (data < 3000) {
-                        barData['2000~3000'] += 1
+                        barData['2000~3000lx'] += 1
                     } else {
-                        barData['3000~5000'] += 1
+                        barData['3000~5000lx'] += 1
                     }
                 }
             }
