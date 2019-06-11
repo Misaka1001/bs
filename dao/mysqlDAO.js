@@ -64,7 +64,8 @@ module.exports = {
     queryValue('get', sql, res)
   },
   getData(res) {
-    const sql = 'SELECT * FROM detection_data order by id desc limit 0,1000;'
+    const sql = 'SELECT * FROM detect order by id desc limit 0,1000;';
+    queryValue('get', sql, res)
   },
   saveData(lum, lp, time) {
     const sql = `INSERT INTO detect VALUES(
