@@ -93,5 +93,8 @@ client.get('/lp', function (req, res) {
 client.get('/lum', function (req, res) {
     dataService.getLum(res)
 })
+client.get('/data',function (req, res) {
+    dataService.getData(res)
+})
 //监听端口
 client.listen('80');

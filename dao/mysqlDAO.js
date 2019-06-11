@@ -4,7 +4,7 @@ const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'detection',
+  database: 'detect',
   port: '3306',
   multipleStatements: true
 });
@@ -63,35 +63,17 @@ module.exports = {
     const sql = 'SELECT * FROM lum order by id desc limit 0,1000;';
     queryValue('get', sql, res)
   },
-  saveLp(Lp, time) {
-    const sql = `INSERT INTO Lp VALUES(
-            NULL,
-            ${Lp},
-            ${time}
-        )`
-    queryValue('save', sql);
+  getData(res) {
+    const sql = 'SELECT * FROM detection_data order by id desc limit 0,1000;'
   },
-  saveLum(lum, result) {
-    const sql = `INSERT INTO Lum VALUES(
-            NULL,
-            ${lum},
-            ${result}
-        )`
-    queryValue('save', sql);
-  },
-  saveData(lum, Lp, time) {
-    const sql1 = `INSERT INTO Lp VALUES(
-      NULL,
-      ${Lp},
-      ${time}
-    )`
-    const sql2 = `INSERT INTO lum VALUES(
+  saveData(lum, lp, time) {
+    const sql = `INSERT INTO detect VALUES(
       NULL,
       ${lum},
+      ${lp},
       ${time}
     )`
-    queryValue('save', sql1)
-    queryValue('save', sql2)
+    queryValue('save', sql)
   },
   getHistoryValue(startDate, endDate, res) {
     const sql = {

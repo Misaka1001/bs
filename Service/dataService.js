@@ -22,10 +22,6 @@ module.exports = {
     sql.getHistoryValue(startDate, endDate, res)
   },
   saveData(data) {
-    const result = JSON.parse(data)
-    sql.saveData(result.lum, result.Lp, result.time)
-  },
-  saveLum(data) {
     let result
     try{
       result = JSON.parse(data)
@@ -33,16 +29,15 @@ module.exports = {
       console.log(data)
       console.log(e.message)
     }
-    sql.saveLum(result.lum, result.time)
-  },
-  saveLp(data) {
-    const result = JSON.parse(data);
-    sql.saveLp(result.Lp, result.time)
+    sql.saveData(result.lum, result.Lp, result.time)
   },
   getLp(res) {
     sql.getLp(res)
   },
   getLum(res) {
     sql.getLum(res)
+  },
+  getData(res) {
+    sql.getData(res)
   }
 }
