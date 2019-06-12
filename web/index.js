@@ -22,6 +22,7 @@ socket.on('connection', (serve) => {
             console.log('received:' + data[i])
             event.emit('transferLum', data[i]);
             event.emit('transferLp', data[i]);
+            event.emit('transferData', data[i]);
             dataService.saveData(data[i])
         }
     })
@@ -45,6 +46,19 @@ client.get('/date', function (req, res) {
 client.ws('/wsData', function(ws, req){
     ws.on('message', function(data){
         console.log(data)
+    })
+    function transferData(data) {
+        //判断连接状态 防止报错
+        if (ws.readyState === 3) {
+            return
+        } else {
+            ws.send(data)
+        }
+    }
+    event.on('transferData', transferData)
+    ws.on('close', function () {
+        event.off('transferData', transferData);
+        console.log('close')
     })
 })
 //与客户端进行websocket连接
