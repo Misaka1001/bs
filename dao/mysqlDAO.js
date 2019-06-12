@@ -1,5 +1,4 @@
 const mysql = require('mysql');
-
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
@@ -21,14 +20,6 @@ function queryValue(flag, sql, res) {
 }
 
 module.exports = {
-  getLp(res) {
-    const sql = 'SELECT * FROM lp order by id desc limit 0,1000;';
-    queryValue('get', sql, res)
-  },
-  getLum(res) {
-    const sql = 'SELECT * FROM lum order by id desc limit 0,1000;';
-    queryValue('get', sql, res)
-  },
   getData(res) {
     const sql = 'SELECT * FROM detect order by id desc limit 0,1000;';
     queryValue('get', sql, res)
