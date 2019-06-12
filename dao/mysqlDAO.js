@@ -9,40 +9,6 @@ const pool = mysql.createPool({
   multipleStatements: true
 });
 
-function getVal(sql, res) {
-  pool.getConnection((err, connection) => {
-    var results = {};
-    var lumTime = new Promise(function (resolve, reject) {
-      connection.query(sql.lumTime, (err, result) => {
-        results.lumTime = result;
-        resolve()
-      })
-    })
-    var lum = new Promise(function (resolve, reject) {
-      connection.query(sql.lum, (err, result) => {
-        results.lum = result;
-        resolve()
-      })
-    })
-    var LpTime = new Promise(function (resolve, reject) {
-      connection.query(sql.LpTime, (err, result) => {
-        results.LpTime = result;
-        resolve()
-      })
-    })
-    var Lp = new Promise(function (resolve, reject) {
-      connection.query(sql.Lp, (err, result) => {
-        results.Lp = result;
-        resolve()
-      })
-    })
-    Promise.all([lumTime, lum, LpTime, Lp]).then(function () {
-      res.json(results)
-      connection.release();
-    })
-  })
-}
-
 function queryValue(flag, sql, res) {
   pool.getConnection((err, connection) => {
     connection.query(sql, (err, result) => {
@@ -67,9 +33,10 @@ module.exports = {
     const sql = 'SELECT * FROM detect order by id desc limit 0,1000;';
     queryValue('get', sql, res)
   },
-  saveData(lum, lp, time) {
+  saveData(deviceId, lum, lp, time) {
     const sql = `INSERT INTO detect VALUES(
       NULL,
+      ${deviceId},
       ${lum},
       ${lp},
       ${time}
