@@ -20,6 +20,7 @@ module.exports = {
     console.log(req)
     console.log(startDate)
     const endDate = startDate + 86400000
+    console.log(endDate)
     sql.getHistoryValue(startDate, endDate, res)
   },
   saveData(data) {
