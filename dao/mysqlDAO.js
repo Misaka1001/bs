@@ -78,6 +78,6 @@ module.exports = {
   },
   getHistoryValue(startDate, endDate, res) {
     const sql = `SELECT * FROM detect WHERE time BETWEEN ${startDate} and ${endDate}`
-    queryValue(sql, res);
+    queryValue('get', sql, res);
   }
 }
