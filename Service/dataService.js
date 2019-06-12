@@ -31,7 +31,7 @@ module.exports = {
       console.log(data)
       console.log(e.message)
     }
-    sql.saveData(result.deviceId, result.lum, result.Lp, result.time)
+    sql.saveData(result['device_id'], result.lum, result.Lp, result.time)
   },
   getData(res) {
     sql.getData(res)
