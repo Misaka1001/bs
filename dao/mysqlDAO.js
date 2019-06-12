@@ -77,12 +77,7 @@ module.exports = {
     queryValue('save', sql)
   },
   getHistoryValue(startDate, endDate, res) {
-    const sql = {
-      lumTime: `SELECT time FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
-      lum: `SELECT lum FROM lum WHERE time BETWEEN ${startDate} and ${endDate}`,
-      LpTime: `SELECT time FROM Lp WHERE time BETWEEN ${startDate} and ${endDate}`,
-      Lp: `SELECT Lp FROM Lp WHERE time BETWEEN ${startDate} and ${endDate}`
-    }
+    const sql = `SELECT * FROM detect WHERE time BETWEEN ${startDate} and ${endDate}`
     getVal(sql, res);
   }
 }
