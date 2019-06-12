@@ -16,8 +16,7 @@ module.exports = {
     return date
   },
   getHistory(req, res) {
-    const date = req.query.date
-    const startDate = new Date(date.split('-').join('/') + ' 00:00:00').getTime()
+    const startDate = req.query.date
     const endDate = startDate + 86400000
     sql.getHistoryValue(startDate, endDate, res)
   },
@@ -30,12 +29,6 @@ module.exports = {
       console.log(e.message)
     }
     sql.saveData(result.lum, result.Lp, result.time)
-  },
-  getLp(res) {
-    sql.getLp(res)
-  },
-  getLum(res) {
-    sql.getLum(res)
   },
   getData(res) {
     sql.getData(res)
