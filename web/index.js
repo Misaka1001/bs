@@ -42,7 +42,11 @@ client.get('/date', function (req, res) {
     data = dataService.getTime()
     res.send(data)
 })
-
+client.ws('/wsData', function(ws, req){
+    ws.on('message', function(data){
+        console.log(data)
+    })
+})
 //与客户端进行websocket连接
 client.ws('/wsLp', function (ws, req) {
     ws.on('message', function (data) {
