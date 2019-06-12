@@ -4,7 +4,7 @@ CREATE DATABASE detect CHARSET=UTF8;
 USE detect;
 CREATE TABLE detect(
     id INT PRIMARY KEY AUTO_INCREMENT,
-    device_id VARCHAR(16),
+    device_id VARCHAR(32),
     lum FLOAT(8),
     Lp FLOAT(8),
     time BIGINT

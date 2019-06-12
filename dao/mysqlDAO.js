@@ -36,7 +36,7 @@ module.exports = {
   saveData(deviceId, lum, lp, time) {
     const sql = `INSERT INTO detect VALUES(
       NULL,
-      ${deviceId},
+      '${deviceId}',
       ${lum},
       ${lp},
       ${time}
