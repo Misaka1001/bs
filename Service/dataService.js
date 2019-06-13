@@ -27,11 +27,11 @@ module.exports = {
     let result
     try{
       result = JSON.parse(data)
+      sql.saveData(result['device_id'], result.lum, result.Lp, result.time)
     }catch(e){
       console.log(data)
       console.log(e.message)
     }
-    sql.saveData(result['device_id'], result.lum, result.Lp, result.time)
   },
   getData(res) {
     sql.getData(res)
