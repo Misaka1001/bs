@@ -17,10 +17,7 @@ module.exports = {
   },
   getHistory(req, res) {
     const startDate = req.query.date
-    console.log(req)
-    console.log(startDate)
-    const endDate = +startDate + 86400000
-    console.log(endDate)
+    const endDate = +startDate + 3600000
     sql.getHistoryValue(startDate, endDate, res)
   },
   saveData(data) {
