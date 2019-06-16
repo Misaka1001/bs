@@ -21,7 +21,12 @@ function queryValue(flag, sql, res) {
 
 module.exports = {
   getData(res) {
-    const sql = 'SELECT * FROM detect order by id desc limit 0,1000;';
+    let now = new Date()
+    let hour = now.getHours()+':00:00'
+    let time = now.toString().split(' ')
+    time[4] = hour
+    now = new Date(time.join(' ')).getTime()
+    const sql = `SELECT * FROM detect WHERE time BETWEEN ${now} and ${now + 3600000}`
     queryValue('get', sql, res)
   },
   saveData(deviceId, lum, lp, time) {
